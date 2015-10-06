@@ -4,9 +4,9 @@ import theano.tensor as T
 class Data:
     def __init__(self, filePath):
         self.path = filePath
+        self.fin = open(self.path, 'r')
         
     def load_batch(self, batch_num):
-        fin = open(self.path, 'r')
         data = []
         for i in range(batch_num):
             line = fin.readline()
@@ -14,7 +14,6 @@ class Data:
                 break
             tokenList = line.split()
             data.append(tokenList[1:])
-        fin.close()
         return data
 
 class DNN:
