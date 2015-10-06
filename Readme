@@ -1,0 +1,45 @@
+
+DNN
+  DNN.init()
+  DNN.forward()
+  DNN.predict()
+  DNN.save_param()
+  DNN.backpropagation()
+  DNN.report_error_rate()
+  DNN.output_predict()
+  Matrix layer1
+  vector b1
+  function activation_func
+  function cost_func
+  vector z
+
+Data
+  constructor() 
+  load_batch()
+  vectorization() // maybe in constructor
+
+
+procedure:
+  dnn=DNN(hiddenlayerNum, L_rate) //decide learning rate layer num
+  dnn.init() // initailize parameter
+  trainData=Data(file)
+  answer=Data(file)
+  validData=Data(file)
+  testData=Data(file)
+  while(true){
+    while(batch=trainData.load_batch(batch_num)){
+      dnn.forward(batch)
+      dnn.backpropagation() // gradient and update parameter
+      dnn.update() // learning rate
+    }
+    dnn.save_param()
+    Ein = dnn.report_error_rate(trainData);
+    Eval = dnn.report_error_rate(validData);
+    print "end one epoch"
+  }
+  while(batch = test.load_batch(batch_num)){
+    dnn.forward(batch)
+    dnn.ouput_predict()
+  }
+
+
